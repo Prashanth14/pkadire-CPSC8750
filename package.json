@@ -1,0 +1,22 @@
+{
+  "name": "pkadire-cpsc8750",
+  "version": "1.0.0",
+  "description": "Software Architecture Basic Project using MERN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prashanth14/pkadire-CPSC8750.git"
+  },
+  "author": "Prashanth Reddy Kadire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Prashanth14/pkadire-CPSC8750/issues"
+  },
+  "homepage": "https://github.com/Prashanth14/pkadire-CPSC8750#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
