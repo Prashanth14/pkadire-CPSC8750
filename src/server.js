@@ -14,6 +14,9 @@ const port = process.env.PORT || 3000;
 // The main page of our website
 app.get('/', (req, res) => {
   res.send('Hello World!')
+  
+  // sets a cookie called "visited" to the current time (in milliseconds)
+  res.cookie('visited', Date.now().toString());
 });
 
 // Start listening for network connections
