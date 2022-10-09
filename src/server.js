@@ -13,8 +13,19 @@ const port = process.env.PORT || 3000;
 
 // The main page of our website
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-  
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>An Example Title</title>
+      </head>
+      <body>
+        <h1>Hello, World!</h1>
+        <p>HTML is so much better than a plain string!</p>
+      </body>
+    </html>
+  `);
   // sets a cookie called "visited" to the current time (in milliseconds)
   res.cookie('visited', Date.now().toString());
 });
