@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.cookie('visitorId', nextVisitorId++);
   res.cookie('visited', Date.now().toString());
   
-  // clearing cookies manually
+  // clearing the cookies manually
   // res.clearCookie('visited');
 
   res.render('welcome', {
