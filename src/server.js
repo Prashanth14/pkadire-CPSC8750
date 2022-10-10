@@ -1,5 +1,6 @@
 // use the express library
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 // create a new server application
 const app = express();
@@ -10,24 +11,41 @@ const app = express();
 // world wide web).
 const port = process.env.PORT || 3000;
 
+app.use(express.static('public'));
+app.use(cookieParser());
 
+app.set('view engine', 'ejs');
 // The main page of our website
+
+let nextVisitorId = 1;
+var last_visited, time_secs;
+
 app.get('/', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <title>An Example Title</title>
-      </head>
-      <body>
-        <h1>Hello, World!</h1>
-        <p>HTML is so much better than a plain string!</p>
-      </body>
-    </html>
-  `);
-  // sets a cookie called "visited" to the current time (in milliseconds)
+  
+
+  if(req.cookies != undefined && req.cookies['visited'] != undefined){
+     last_visited = req.cookies['visited'];
+     secs = Math.floor((Date.now() - parseInt(last_visited))/1000);
+     time_secs = 'It has been '+ secs + ' seconds since your last visit';
+  }else{
+    time_secs = 'You have never visited';
+  }
+
+  res.cookie('visitorId', nextVisitorId++);
   res.cookie('visited', Date.now().toString());
+  
+  // clearing cookies manually
+  // res.clearCookie('visited');
+
+  res.render('welcome', {
+    name: req.query.name || "World",
+    visit_time:req.cookies.visited,
+    VisitorId: req.cookies.visitorId,
+    time: time_secs
+  });
+
+  console.log(req.cookies);
+  
 });
 
 // Start listening for network connections
